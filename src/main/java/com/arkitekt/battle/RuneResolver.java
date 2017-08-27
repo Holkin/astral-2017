@@ -13,7 +13,6 @@ import static com.arkitekt.names.Const.*;
 
 public class RuneResolver {
     private static final Map<String, Integer> powerBonus = new HashMap<>();
-    private static final Map<String, Entry> imposesDamageTo = new HashMap<>();
     private static final Map<String, Entry> takesDamageFrom = new HashMap<>();
 
     static {
@@ -30,16 +29,6 @@ public class RuneResolver {
         powerBonus.put(EL + "." + INFANTRY, 1);
         powerBonus.put(ELD + "." + ARCHERS, 1);
         powerBonus.put(TIR + "." + CAVALRY, 1);
-
-        imposesDamageTo.put(TAL, entry(THUL, 2));
-        imposesDamageTo.put(THUL, entry(RAL, 2));
-        imposesDamageTo.put(RAL, entry(ORT, 2));
-        imposesDamageTo.put(ORT, entry(ETH, 2));
-        imposesDamageTo.put(ETH, entry(ITH, 2));
-        imposesDamageTo.put(ITH, entry(TAL, 2));
-        imposesDamageTo.put(EL, entry(TIR, 1));
-        imposesDamageTo.put(ELD, entry(EL, 1));
-        imposesDamageTo.put(TIR, entry(ELD, 1));
 
         takesDamageFrom.put(TAL, entry(ITH, 2));
         takesDamageFrom.put(THUL, entry(TAL, 2));
@@ -66,13 +55,6 @@ public class RuneResolver {
         long score = powerBonus.get(myRune);
         Integer bonus = powerBonus.get(myRune + "." + myTactic.getUnit().getName());
         score += bonus == null ? 0 : bonus;
-
-        score -= otherRunes.stream()
-                .map(imposesDamageTo::get)
-                .filter(e -> e != null)
-                .filter(e -> e.getKey().equals(myRune))
-                .mapToInt(Entry::getValue)
-                .sum();
 
         score -= otherRunes.stream()
                 .mapToInt(r -> {
