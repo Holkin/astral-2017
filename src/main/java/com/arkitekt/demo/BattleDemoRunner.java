@@ -13,7 +13,7 @@ import java.util.List;
 
 import static com.arkitekt.names.Const.*;
 
-@Component
+//@Component
 public class BattleDemoRunner implements CommandLineRunner {
 
     @Autowired

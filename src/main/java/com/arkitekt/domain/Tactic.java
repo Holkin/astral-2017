@@ -29,4 +29,14 @@ public class Tactic {
     public Rune getRune() {
         return rune;
     }
+
+    @Override
+    public String toString() {
+        return "Tactic{" +
+                "unit=" + unit.getName() +
+                ", magic=" + magic.getName() +
+                ", hero=" + hero.getName() +
+                ", rune=" + (rune == null ? "" : rune.getName()) +
+                '}';
+    }
 }
