@@ -1,14 +1,8 @@
 package com.arkitekt.domain;
 
 
-public class Unit {
-    private final String name;
-
+public class Unit extends TacticItem {
     public Unit(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
+        super(name, TacticItemType.UNIT);
     }
 }
