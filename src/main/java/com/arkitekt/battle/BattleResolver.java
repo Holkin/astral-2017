@@ -38,6 +38,9 @@ public class BattleResolver {
 
             String report = name + " " + a.getEnergy();
             report += record.getDescription();
+            if (a.getAttackBonus() > 0) {
+                report += " + craft " + a.getAttackBonus();
+            }
             report += " = " + score;
 
             System.out.println(report);
