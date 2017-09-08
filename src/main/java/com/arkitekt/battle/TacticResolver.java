@@ -7,13 +7,12 @@ import com.arkitekt.domain.TacticItemType;
 import com.arkitekt.rules.RuleEntry;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
-import org.springframework.util.StringUtils;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static com.arkitekt.rules.Rules.*;
 import static com.arkitekt.domain.TacticItemType.*;
+import static com.arkitekt.rules.Rules.*;
 
 @Component
 public class TacticResolver {
@@ -29,7 +28,7 @@ public class TacticResolver {
         String report = String.format(" + (%s, %s, %s)",
                 records.get(UNIT).getDescription(), records.get(MAGIC).getDescription(), records.get(HERO).getDescription());
         if (records.get(RUNE).getScore() != 0) {
-            report += " + "  + records.get(RUNE).getDescription();
+            report += " + " + records.get(RUNE).getDescription();
         }
 
         return new BattleRecord(score, report);

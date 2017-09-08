@@ -5,7 +5,6 @@ import com.arkitekt.domain.Attack;
 import com.arkitekt.domain.Tactic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
