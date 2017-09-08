@@ -1,0 +1,40 @@
+Warrior takes damage from Scout 2
+Commander takes damage from Warrior 2
+Commander takes damage from Wizard 2
+Wizard takes damage from Warrior 2
+Wizard takes damage from Scout 2
+Scout takes damage from Commander 2
+
+Commander triggers unit
+Wizard triggers magic
+
+Wizardry takes damage from Elemental 2
+Sorcery takes damage from Wizardry 2
+Elemental takes damage from Sorcery 2
+
+Infantry takes damage from Archers 2
+Archers takes damage from Cavalry 2
+Cavalry takes damage from Infantry 2
+
+Ort takes damage from Ral 2
+El takes damage from Eld 1
+Eth takes damage from Ort 2
+Thul takes damage from Tal 2
+Ral takes damage from Thul 2
+Ith takes damage from Eth 2
+Eld takes damage from Tir 1
+Tir takes damage from El 1
+Tal takes damage from Ith 2
+
+Ort gives power bonus 2
+Tir.Cavalry gives power bonus 1
+El gives power bonus 1
+Eth gives power bonus 2
+Thul gives power bonus 2
+Ral gives power bonus 2
+Ith gives power bonus 2
+Eld gives power bonus 1
+Tir gives power bonus 1
+El.Infantry gives power bonus 1
+Eld.Archers gives power bonus 1
+Tal gives power bonus 2

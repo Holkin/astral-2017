@@ -1,14 +1,8 @@
 package com.arkitekt.domain;
 
 
-public class Rune {
-    private final String name;
-
+public class Rune extends TacticItem{
     public Rune(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
+        super(name, TacticItemType.RUNE);
     }
 }

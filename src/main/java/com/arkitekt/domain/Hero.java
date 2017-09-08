@@ -1,14 +1,8 @@
 package com.arkitekt.domain;
 
 
-public class Hero {
-    private final String name;
-
+public class Hero extends TacticItem {
     public Hero(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
+        super(name, TacticItemType.HERO);
     }
 }

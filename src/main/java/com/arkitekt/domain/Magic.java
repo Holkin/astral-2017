@@ -1,14 +1,8 @@
 package com.arkitekt.domain;
 
 
-public class Magic {
-    private final String name;
-
+public class Magic extends TacticItem {
     public Magic(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
+        super(name, TacticItemType.MAGIC);
     }
 }

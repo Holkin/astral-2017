@@ -36,7 +36,7 @@ public class TacticFactory {
     }
 
     public static Tactic tactic(int unit, int magic, int hero, String rune) {
-        return tacticSafe(HEROES[unit - 1], MAGIC[magic - 1], HEROES[hero - 1], rune);
+        return tacticSafe(UNITS[unit - 1], MAGIC[magic - 1], HEROES[hero - 1], rune);
     }
 
     public static Tactic tacticSafe(String unit, String magic, String hero, String rune) {
