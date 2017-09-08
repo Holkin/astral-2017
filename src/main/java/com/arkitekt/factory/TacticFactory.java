@@ -2,41 +2,50 @@ package com.arkitekt.factory;
 
 
 import com.arkitekt.domain.*;
+import com.arkitekt.util.TextFileLoader;
 
-import java.util.Arrays;
-
-import static com.arkitekt.names.Const.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TacticFactory {
 
-    private static final String HEROES[] = {
-            WARRIOR, SCOUT, COMMANDER, WIZARD
-    };
-    private static final String MAGIC[] = {
-            WIZARDRY, SORCERY, ELEMENTAL
-    };
-    private static final String UNITS[] = {
-            INFANTRY, ARCHERS, CAVALRY
-    };
-    private static final String RUNES[] = {
-            TAL, THUL, RAL, ORT, ETH, ITH, EL, ELD, TIR
-    };
+    private static final List<String> HEROES = new ArrayList<>();
+    private static final List<String> MAGIC = new ArrayList<>();
+    private static final List<String> UNITS = new ArrayList<>();
+    private static final List<String> RUNES = new ArrayList<>();
+
+    static {
+        List<String> lines = TextFileLoader.load("./assets/names.txt");
+        lines.stream().forEach(line -> {
+            String[] tokens = line.split(" ");
+            switch (tokens[0]) {
+                case "unit":
+                    UNITS.add(tokens[1]);
+                    break;
+                case "magic":
+                    MAGIC.add(tokens[1]);
+                    break;
+                case "hero":
+                    HEROES.add(tokens[1]);
+                    break;
+                case "rune":
+                    RUNES.add(tokens[1]);
+                    break;
+            }
+        });
+    }
 
     public static Tactic tactic(String unit, String magic, String hero, String rune) {
-        if (!Arrays.asList(UNITS).contains(unit)) {
+        if (!UNITS.contains(unit)) {
             throw new RuntimeException("no such unit " + unit);
         }
-        if (!Arrays.asList(MAGIC).contains(magic)) {
+        if (!MAGIC.contains(magic)) {
             throw new RuntimeException("no such magic " + magic);
         }
-        if (!Arrays.asList(HEROES).contains(hero)) {
+        if (!HEROES.contains(hero)) {
             throw new RuntimeException("no such hero " + hero);
         }
         return tacticSafe(unit, magic, hero, rune);
-    }
-
-    public static Tactic tactic(int unit, int magic, int hero, String rune) {
-        return tacticSafe(UNITS[unit - 1], MAGIC[magic - 1], HEROES[hero - 1], rune);
     }
 
     public static Tactic tacticSafe(String unit, String magic, String hero, String rune) {

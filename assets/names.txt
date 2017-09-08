@@ -1,0 +1,22 @@
+hero Warrior
+hero Scout
+hero Commander
+hero Wizard
+
+magic Wizardry
+magic Sorcery
+magic Elemental
+
+unit Infantry
+unit Archers
+unit Cavalry
+
+rune Tal
+rune Thul
+rune Ral
+rune Ort
+rune Eth
+rune Ith
+rune El
+rune Eld
+rune Tir

@@ -4,14 +4,12 @@ import com.arkitekt.battle.BattleResolver;
 import com.arkitekt.domain.Attack;
 import com.arkitekt.domain.Tactic;
 import com.arkitekt.factory.TacticFactory;
+import com.arkitekt.util.TextFileLoader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static com.arkitekt.names.Const.*;
+import java.util.*;
 
 @Component
 public class BattleDemoRunner implements CommandLineRunner {
@@ -21,69 +19,47 @@ public class BattleDemoRunner implements CommandLineRunner {
 
     @Override
     public void run(String... strings) throws Exception {
-        List<Attack> battle = new ArrayList<>();
+        List<String> lines = TextFileLoader.load("./assets/battles.txt");
+        Map<String, List<Attack>> battles = new HashMap<>();
+        List<Attack> currentBattle = new ArrayList<>();
+        for (String line : lines) {
+            String[] tokens = line.split(" ");
+            switch (tokens[0]) {
+                case "battle":
+                    currentBattle = new ArrayList<>();
+                    battles.put(line.substring("battle ".length()), currentBattle);
+                    break;
+                case "army":
+                    String combatant = tokens[1];
+                    int energy = Integer.valueOf(tokens[2]);
+                    String unit = tokens[3];
+                    String magic = tokens[4];
+                    String hero = tokens[5];
+                    String rune = tokens.length > 6 && !tokens[6].contains("=")
+                            ? tokens[6] : null;
+                    LinkedHashMap<String, Integer> bonuses = null;
+                    if (tokens[tokens.length - 1].contains("=")) {
+                        bonuses = new LinkedHashMap<>();
+                        String[] params = tokens[tokens.length - 1].split(",");
+                        for (String param : params) {
+                            String[] val = param.split("=");
+                            bonuses.put(val[0], Integer.valueOf(val[1]));
+                        }
+                    }
+                    Tactic tactic = TacticFactory.tactic(unit, magic, hero, rune);
+                    currentBattle.add(new Attack(combatant, tactic, energy, bonuses));
+            }
+        }
 
-        Tactic t = TacticFactory.tactic(INFANTRY, ELEMENTAL, WIZARD, null);
-        battle.add(new Attack("Local", t, 3, 0));
-        t = TacticFactory.tactic(ARCHERS, WIZARDRY, WARRIOR, ELD);
-        battle.add(new Attack("Daardus", t, 6, 0));
-        t = TacticFactory.tactic(CAVALRY, WIZARDRY, SCOUT, ITH);
-        battle.add(new Attack("Sinitar", t, 6, 0));
+        List<String> report = new ArrayList<>();
 
-        System.out.println("\nBattle 1");
-        resolver.resolve(battle);
+        battles.entrySet().stream().forEach(b -> {
+            report.add(b.getKey());
+            resolver.resolve(b.getValue()).stream().forEach(report::add);
+            report.add("");
+        });
 
-        battle.clear();
-
-        t = TacticFactory.tactic(INFANTRY, SORCERY, WIZARD, null);
-        battle.add(new Attack("Local", t, 3, 0));
-        t = TacticFactory.tactic(INFANTRY, SORCERY, WARRIOR, TAL);
-        battle.add(new Attack("LeHunter", t, 5, 0));
-
-        System.out.println("\nBattle 2");
-        resolver.resolve(battle);
-
-        battle.clear();
-
-        t = TacticFactory.tactic(CAVALRY, ELEMENTAL, COMMANDER, null);
-        battle.add(new Attack("Local", t, 0, 0));
-        t = TacticFactory.tactic(CAVALRY, WIZARDRY, COMMANDER, null);
-        battle.add(new Attack("ttt", t, 6, 0));
-
-        System.out.println("\nBattle 3");
-        resolver.resolve(battle);
-
-        // turn 2
-
-        battle.clear();
-
-        t = TacticFactory.tactic(CAVALRY, WIZARDRY, WARRIOR, null);
-        battle.add(new Attack("Local", t, 0, 0));
-        t = TacticFactory.tactic(INFANTRY, SORCERY, SCOUT, EL);
-        battle.add(new Attack("ttt", t, 2, 0));
-
-        System.out.println("\nBattle 4");
-        resolver.resolve(battle);
-
-        battle.clear();
-
-        t = TacticFactory.tactic(INFANTRY, SORCERY, WARRIOR, null);
-        battle.add(new Attack("Local", t, 1, 0));
-        t = TacticFactory.tactic(CAVALRY, WIZARDRY, COMMANDER, TIR);
-        battle.add(new Attack("ttt", t, 2, 1));
-
-        System.out.println("\nBattle 5");
-        resolver.resolve(battle);
-
-        battle.clear();
-
-        t = TacticFactory.tactic(INFANTRY, SORCERY, COMMANDER, null);
-        battle.add(new Attack("Local", t, 3, 0));
-        t = TacticFactory.tactic(INFANTRY, ELEMENTAL, SCOUT, EL);
-        battle.add(new Attack("ttt", t, 10, 0));
-
-        System.out.println("\nBattle 6");
-        resolver.resolve(battle);
-        System.out.println();
+        report.stream().forEach(System.out::println);
+        TextFileLoader.unload("./report.txt", report);
     }
 }
