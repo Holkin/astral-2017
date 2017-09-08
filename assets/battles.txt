@@ -1,0 +1,25 @@
+
+battle Battle 1
+army Local 3 Infantry Elemental Wizard
+army Daardus 6 Archers Wizardry Warrior Eld
+army Sinitar 6 Cavalry Wizardry Scout Ith
+
+battle Battle 2
+army Local 3 Infantry Sorcery Wizard
+army LeHunter 5 Infantry Sorcery Warrior Tal
+
+battle Battle 3
+army Local 0 Cavalry Elemental Commander
+army ttt 6 Cavalry Wizardry Commander
+
+battle Battle 4
+army Local 0 Cavalry Wizardry Warrior
+army Daardus 2 Infantry Sorcery Scout El
+
+battle Battle 5
+army Local 1 Infantry Sorcery Warrior
+army Pilotarthur 2 Cavalry Wizardry Commander Tir craft=1
+
+battle Battle 6
+army Local 3 Infantry Sorcery Commander
+army zebrotavr 10 Infantry Elemental Scout

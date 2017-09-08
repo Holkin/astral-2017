@@ -18,7 +18,8 @@ public class BattleResolver {
     @Autowired
     TacticResolver tacticResolver;
 
-    public void resolve(List<Attack> attacks) {
+    public List<String> resolve(List<Attack> attacks) {
+        List<String> result = new ArrayList<>();
         List<Tactic> allTactics = attacks.stream().map(Attack::getTactic).collect(Collectors.toList());
 
         Map<String, Tactic> ownTactic = new HashMap<>();
@@ -34,16 +35,18 @@ public class BattleResolver {
         for (Attack a : attacks) {
             String name = a.getAttacker();
             BattleRecord record = tacticResolver.resolve(ownTactic.get(name), otherTactics.get(name));
-            long score = a.getEnergy() + a.getAttackBonus() + record.getScore();
+            long score = a.getEnergy() + a.getTotalAttackBonus() + record.getScore();
 
             String report = name + " " + a.getEnergy();
             report += record.getDescription();
-            if (a.getAttackBonus() > 0) {
-                report += " + craft " + a.getAttackBonus();
+            if (a.getTotalAttackBonus() > 0) {
+                report += " + " + a.getAttackBonusDescription() + " " + a.getTotalAttackBonus();
             }
             report += " = " + score;
 
-            System.out.println(report);
+            result.add(report);
         }
+
+        return result;
     }
 }
