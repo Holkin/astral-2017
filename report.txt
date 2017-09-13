@@ -1,0 +1,9 @@
+Battle 1
+Daardus 6 + (Infantry -2, Sorcery -8, Scout -4) + El 1 = -7
+Sinitar 6 + (Cavalry -6, Wizardry -2, Scout -4) + Ith 2 = -4
+LeHunter 5 + (Infantry -2, Sorcery -8, Warrior -6) = -11
+ttt 6 + (Cavalry -6, Wizardry -2, Commander -4) = -6
+Daardus 2 + (Infantry -2, Sorcery -8, Scout -4) + El 1 = -11
+Pilotarthur 2 + (Cavalry -6, Wizardry -2, Commander -4) + Tir 1 + craft 1 = -8
+zebrotavr 10 + (Infantry -2, Elemental -4, Scout -4) = 0
+

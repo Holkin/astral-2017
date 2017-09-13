@@ -35,4 +35,14 @@ public class Tactic {
     public Rune getRune() {
         return (Rune) map.get(RUNE);
     }
+
+    @Override
+    public String toString() {
+        return "Tactic{" +
+                "unit=" + getUnit().getName() +
+                ", magic=" + getMagic().getName() +
+                ", hero=" + getHero().getName() +
+                ", rune=" + (getRune() == null ? "" : getRune().getName()) +
+                '}';
+    }
 }
