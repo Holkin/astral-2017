@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.*;
 
-@Component
+//@Component
 public class BattleDemoRunner implements CommandLineRunner {
 
     @Autowired
