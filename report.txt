@@ -1,0 +1,25 @@
+Battle 1
+Local 3 + (Infantry -2, Elemental 0, Wizard -4) = -3
+Daardus 6 + (Archers -2, Wizardry -4, Warrior -2) + Eld 2 = 0
+Sinitar 6 + (Cavalry -2, Wizardry -4, Scout 0) + Ith 2 = 2
+
+Battle 3
+Local 0 + (Cavalry 0, Elemental 0, Commander 0) = 0
+ttt 6 + (Cavalry 0, Wizardry -2, Commander 0) = 4
+
+Battle 2
+Local 3 + (Infantry 0, Sorcery 0, Wizard -2) = 1
+LeHunter 5 + (Infantry 0, Sorcery 0, Warrior 0) + Tal 2 = 7
+
+Battle 5
+Local 1 + (Infantry 0, Sorcery -2, Warrior 0) = -1
+Pilotarthur 2 + (Cavalry -2, Wizardry 0, Commander -2) + Tir 2 + craft 1 = 1
+
+Battle 4
+Local 0 + (Cavalry -2, Wizardry 0, Warrior -2) = -4
+Daardus 2 + (Infantry 0, Sorcery -2, Scout 0) + El 2 = 2
+
+Battle 6
+Local 3 + (Infantry 0, Sorcery 0, Commander 0) = 3
+zebrotavr 10 + (Infantry 0, Elemental -2, Scout -2) = 6
+
